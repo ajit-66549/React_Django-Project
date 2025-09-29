@@ -18,4 +18,4 @@ api.interceptors.request.use(
     }
 )
 
-export default
+export default api
