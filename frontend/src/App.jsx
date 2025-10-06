@@ -1,11 +1,5 @@
 import react from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigation,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -27,7 +21,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="/home"
           element={
             <ProtectedRoute>
               <Home />
@@ -35,6 +29,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />}/>
+        <Route path="/logout" element={<Logout />}/>
         <Route path="/register" element={<RegisterAndLogout />}/>
         <Route path="*" element={<NotFound />}/>
       </Routes>

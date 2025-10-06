@@ -9,7 +9,9 @@ api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem(ACCESS_TOKEN)
         if (token) {
-            config.headers.Authorization(`Bearer ${token}`)  //passes JWT access token
+            // ensure headers object exists
+            config.headers = config.headers || {}
+            config.headers.Authorization = `Bearer ${token}`  // passes JWT access token
         }
         return config
     },
