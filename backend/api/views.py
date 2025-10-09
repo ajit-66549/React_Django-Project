@@ -35,4 +35,3 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny]           # any one can call this view, even not authenticated
     
     
-    
