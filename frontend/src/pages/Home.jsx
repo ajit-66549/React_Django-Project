@@ -8,7 +8,7 @@ function Home() {
 
   useEffect(() => {
     getNotes;
-  }, [])
+  }, []);
 
   const getNotes = () => {
     api
@@ -21,7 +21,59 @@ function Home() {
       .catch((error) => alert(error)); // alerts the error if occurred
   };
 
-  return <div>Home</div>;
+  const deleteNote = (id) => {
+    api
+      .delete(`/api/notes/delete/${id}/`)
+      .then((res) => {
+        if (res.status === 204) alert("Note Deleted!");
+        else "Failed to delete note";
+      })
+      .catch((error) => alert(error));
+    getNotes();
+  };
+
+  const createNote = (e) => {
+    e.preventDefault();
+    api
+      .post("/api/notes/", { content, title })
+      .then((res) => {
+        if (res.status === 201) alert("Note created");
+        else "Failed to make note";
+      })
+      .catch((error) => alert(error));
+    getNotes();
+  };
+
+  return (
+    <div>
+      <div>
+        <h2>Notes</h2>
+      </div>
+      <h2>Create a note</h2>
+      <form onSubmit={createNote}>
+        <label htmlFor="title">Title: </label>
+        <input
+          type="text"
+          value={title}
+          required
+          id="title"
+          name="title"
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <br />
+        <label htmlFor="content">Content: </label>
+        <textarea
+          name="content"
+          id="content"
+          value={content}
+          required
+          onChange={(e) => setContent(e.target.value)}
+        ></textarea>
+        <br />
+        <input type="submit" value="submit"></input>
+      </form>
+    </div>
+  );
 }
 
 export default Home;
