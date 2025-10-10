@@ -27,9 +27,9 @@ function Home() {
       .then((res) => {
         if (res.status === 204) alert("Note Deleted!");
         else "Failed to delete note";
+        getNotes();
       })
       .catch((error) => alert(error));
-    getNotes();
   };
 
   const createNote = (e) => {
@@ -39,9 +39,9 @@ function Home() {
       .then((res) => {
         if (res.status === 201) alert("Note created");
         else "Failed to make note";
+        getNotes();
       })
       .catch((error) => alert(error));
-    getNotes();
   };
 
   return (
